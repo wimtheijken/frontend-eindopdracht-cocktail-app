@@ -1,0 +1,65 @@
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height: 100vh;
+    align-items: center;
+}
+
+.filter-inner-container {
+    position: relative;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.filter-select {
+    background-color: transparent;
+    appearance: none;
+    outline: none; /* disable blue border */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.filter-select::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.filter-inner-container::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-bottom: 20px solid #5b5b5b;
+    border-right: 13px solid transparent;
+    position: absolute;
+    left: 240px;
+    top: -40px;
+}
+
+.filter-inner-container::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-top: 20px solid #5b5b5b;
+    border-right: 13px solid transparent;
+    position: absolute;
+    left: 240px;
+    bottom: -40px;
+}
+
+.scroll-page {
+    color: #a0a0a0;
+    height: 2em;
+    background-color: transparent;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+

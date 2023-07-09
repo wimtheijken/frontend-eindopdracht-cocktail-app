@@ -1,0 +1,45 @@
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #3f3e3e;
+    background-image: url("./assets/noise-texture.png");
+}
+
+h1 {
+    font-size: 5em;
+    font-weight: lighter;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.7em;
+    font-weight: lighter;
+    color: white;
+    padding-bottom: 7px;
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: 300;
+    padding-bottom: 5px;
+    color: white;
+    padding-top: 5px;
+}
+
+h4 {
+    font-size: 1em;
+    font-weight: lighter;
+    font-style: italic;
+    color: white;
+    padding-bottom: 7px;
+}
+
+p {
+    font-size: 1em;
+    font-weight: lighter;
+    line-height: 1.6;
+    color: white;
+}

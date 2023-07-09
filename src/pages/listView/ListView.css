@@ -1,0 +1,16 @@
+.listview-container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.listview-wrap-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 980px;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+}

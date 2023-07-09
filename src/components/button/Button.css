@@ -1,0 +1,21 @@
+.button-default, .button-filter, .button-search  {
+    font-size: 1.2em;
+    font-weight: lighter;
+    height: 40px;
+    width: 180px;
+    border-radius: 10px;
+    background-color: #a0a0a0;
+    box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+/*
+.button-filter {
+    !*margin-top: 70px;*!
+    background-color: transparent;
+    box-shadow: none;
+}
+*/
+
+.button-search {
+    background-color: dodgerblue;
+}
