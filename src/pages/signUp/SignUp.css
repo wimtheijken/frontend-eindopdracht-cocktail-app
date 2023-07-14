@@ -1,0 +1,23 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20px;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-message {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.signup-message a {
+    color: white;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

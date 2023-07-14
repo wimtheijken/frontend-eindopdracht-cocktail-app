@@ -1,0 +1,31 @@
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20px;
+    align-items: center;
+    height: 100vh;
+}
+
+.menu-text-container {
+    width: 300px;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.menu-favorietenlijst {
+    color: white;
+    padding-left: 20px;
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 2;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-uitloggen {
+    padding-top: 30px;
+}

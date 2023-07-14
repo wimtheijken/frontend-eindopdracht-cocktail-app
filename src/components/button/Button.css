@@ -1,4 +1,4 @@
-.button-default, .button-filter, .button-search  {
+.button-default, .button-search, .button-reset {
     font-size: 1.2em;
     font-weight: lighter;
     height: 40px;
@@ -8,14 +8,111 @@
     box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
-/*
-.button-filter {
-    !*margin-top: 70px;*!
-    background-color: transparent;
-    box-shadow: none;
+.button-default:active {
+    background-color: #d3ce8f;
 }
-*/
 
 .button-search {
-    background-color: dodgerblue;
+    background-color: #1E90FF;
+    margin: 20px;
 }
+.button-search:active {
+    background-color: #d3ce8f;
+}
+
+.button-reset {
+    font-size: 0.9em;
+    margin: 10px;
+    height: 25px;
+    width: 80px;
+}
+
+.button-reset:a {
+    background-color: #d3ce8f;
+}
+
+/*Kleine computerschermen: vanaf 992px;*/
+/*Standaard computerschermen: vanaf 1200px;*/
+/*Grote computerschermen: vanaf 1600px;*/
+@media screen and (min-width: 993px) and (max-width: 1150px) {
+    .button-default, .button-filter, .button-search {
+        width: 150px;
+    }
+}
+
+/*Tablets: vanaf 768px;*/
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    .button-default, .button-filter, .button-search {
+        width: 125px;
+    }
+}
+
+/*Telefoons in landscape: van 576px tot 768px;*/
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .button-default, .button-filter, .button-search {
+        width: 100px;
+    }
+}
+
+/*Telefoons in portrait: tot 576px;*/
+/*calc(100vw - 120px);*/
+@media screen and (min-width: 429px) and (max-width: 576px) {
+    .material-symbols-outlined {
+        font-size: 2em;
+        height: 70px;
+        width: 70px;
+        border-radius: 70px;
+        background-color: #a0a0a0;
+        box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+        font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+    }
+
+    .material-symbols-outlined:active {
+        font-size: 2em;
+        height: 70px;
+        width: 70px;
+        border-radius: 70px;
+        background-color: #d3ce8f;
+        box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+        font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+    }
+}
+
+@media screen and (max-width: 428px) {
+    .material-symbols-outlined {
+        font-size: 2em;
+        height: 60px;
+        width: 60px;
+        border-radius: 60px;
+        background-color: #a0a0a0;
+        box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+        font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+    }
+
+    .material-symbols-outlined:active {
+        font-size: 2em;
+        height: 60px;
+        width: 60px;
+        border-radius: 60px;
+        background-color: #d3ce8f;
+        box-shadow: inset 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+        font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+    }
+}
+

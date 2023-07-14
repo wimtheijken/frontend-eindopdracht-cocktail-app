@@ -1,37 +1,40 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import {checkTokenValidity} from "../helper/checkTokenValidity";
 import axios from "axios";
+import {SearchContext} from "./SearchContext";
 
 export const AuthContext = createContext(null)
 
 function AuthContextProvider({children}) {
 
-    // Stap 5: Maak een state aan om de pagina status bij te houden (pending, done)
+    const { toggleError, toggleLoading, handleFavorites, removeFavo } = useContext(SearchContext)
+
+    const navigate = useNavigate();
+
+    // bijhouden van de favorieten
+    // const [favoName, setFavoName] = useState('');
+    // const [favorites, setFavorites] = useState([]);
+    // const [isFavo, toggleIsFavo] = useState(false);
+
     const [auth, setAuth] = useState({
         isAuth: false,
         user: null,
         status: "pending"
     });
-    // const navigate = useNavigate();
-
-    // Stap 1: Gebruik useEffect om te checken of er een token in de localstorage zit
-    // Stap 2: Als er een token in de localstorage zit, check dan of deze nog geldig is (checkTokenValidity)
-    // Stap 3: Als de token nog geldig is, log de gebruiker in
-    // Stap 4: Als de token niet meer geldig is, log de gebruiker uit
-    // Stap 7: Haal de user data op uit de database en sla deze op in de state
-    // Stap 8: Geef een redirect mee (optioneel)
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
-
+        const storedFavo = localStorage.getItem('favo');
         if (storedToken && checkTokenValidity(storedToken)) {
             void login(storedToken)
+            if (storedFavo) {
+                void handleFavorites(storedFavo)
+            }
         } else {
             void logout()
         }
-
     }, [])
 
     async function login(jwt_token, redirect) {
@@ -43,9 +46,11 @@ function AuthContextProvider({children}) {
                 data: {
                     email,
                     username,
-                    id
+                    id,
+                    info,
+                    roles
                 }
-            } = await axios.get(`http://localhost:3000/600/users/${decodedToken.sub}`, {
+            } = await axios.get('https://frontend-educational-backend.herokuapp.com/api/user', {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${jwt_token}`
@@ -57,12 +62,14 @@ function AuthContextProvider({children}) {
                 user: {
                     email,
                     id,
-                    username
+                    username,
+                    info,
+                    roles
                 },
                 status: "done"
             })
             console.log('De gebruiker is ingelogd!')
-            // if (redirect) navigate(redirect);
+            if (redirect) navigate('/profile');
         } catch (e) {
             console.error(e)
         }
@@ -70,6 +77,7 @@ function AuthContextProvider({children}) {
 
     function logout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('favo');
         setAuth({
             ...auth,
             isAuth: false,
@@ -83,11 +91,18 @@ function AuthContextProvider({children}) {
     const data = {
         isAuth: auth.isAuth,
         user: auth.user,
+        // favoName,
+        // setFavoName,
+        // favorites,
+        // setFavorites,
+        // isFavo,
+        // toggleIsFavo,
         logout: logout,
-        login: login
+        login: login,
+        // favoCheck: favoCheck,
+        // updateUserInfo: updateUserInfo,
     }
 
-    // Stap 6: Check of de pagina status pending is, als dit zo is, laat dan een loading icoon zien
     return (
         <AuthContext.Provider value={data}>
             {auth.status === "done" ? children : <p>loading...</p>}

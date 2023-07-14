@@ -3,10 +3,7 @@ import Button from "../../components/button/Button";
 import './Filter.css';
 import {useNavigate, useParams} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
-import axios from "axios";
-import {checkListType} from "../../helper/checkListType";
 import {getObjectKey} from "../../helper/getObjectKey";
-import {checkSearchResult} from "../../helper/checkSearchResult";
 
 function Filter(props) {
 

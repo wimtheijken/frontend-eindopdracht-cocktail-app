@@ -1,12 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
+import {SearchContext} from "../../context/SearchContext";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
-import {SearchContext} from "../../context/SearchContext";
-import axios from "axios";
-import './Search.css';
-import {useNavigate} from "react-router-dom";
-import {checkAmountLetters} from "../../helper/checkAmountLetters";
 import {checkSearchResult} from "../../helper/checkSearchResult";
+import './Search.css';
 
 function Search() {
     const { handleSearch, search, setSearch, handleError, endpoint, setEndpoint, searchResult, check, toggleCheck, toggleFilterCheck, loading, error } = useContext(SearchContext)
@@ -27,7 +25,7 @@ function Search() {
             <h1>Zoek uw cocktail</h1>
             <form onSubmit={handleFormSubmit} className="search-form">
                 <Input
-                    className="search-field"
+                    className="input-field"
                     id="search-field"
                     name="search-field"
                     type="text"

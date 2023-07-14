@@ -1,7 +1,8 @@
-/*.cocktail-container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    !*margin-top: 20px;*!*/
-/*    flex-basis: 100%;*/
-/*    align-items: center;*/
-/*}*/
+.cocktail-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20px;
+    align-items: center;
+    height: 100vh;
+}

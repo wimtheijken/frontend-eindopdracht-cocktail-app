@@ -1,16 +1,19 @@
+/*media aanpassingen*/
 .cocktail-container {
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
+    /*flex-basis: 100%;*/
     align-items: center;
 }
 
+/*media aanpassingen*/
 .singleview-inner-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
+/*media aanpassingen*/
 .singleview-image-container {
     position: relative;
     width: 300px;
@@ -19,6 +22,7 @@
     border-radius: 10px;
     box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);
 }
+
 .singleview-shadow::after {
     content: '';
     display: block;
@@ -35,12 +39,124 @@
     border-radius: 10px;
 }
 
+/*media aanpassingen*/
 .singleview-description {
     width: 400px;
-    height: 300px;
+    /*height: 300px;*/
     margin: 30px;
 }
 
 .singleview-ingredients {
     padding-bottom: 10px;
+}
+
+.singleview-favo-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.singleview-fill .material-symbols-outlined {
+    color: white;
+    font-size: 2em;
+    background-color: transparent;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    font-variation-settings:
+            'FILL' 1,
+            'wght' 100,
+            'GRAD' 0,
+            'opsz' 48
+}
+
+.singleview-outline .material-symbols-outlined {
+    color: white;
+    font-size: 2em;
+    background-color: transparent;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    font-variation-settings:
+            'FILL' 0,
+            'wght' 100,
+            'GRAD' 0,
+            'opsz' 48
+}
+
+/*Kleine computerschermen: vanaf 992px;*/
+/*Standaard computerschermen: vanaf 1200px;*/
+/*Grote computerschermen: vanaf 1600px;*/
+@media screen and (min-width: 993px) and (max-width: 1150px) {
+
+}
+
+/*Tablets: vanaf 768px;*/
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    /*media aanpassingen*/
+    .singleview-image-container {
+        /*position: relative;*/
+        /*width: 300px;*/
+        /*height: 300px;*/
+        /*margin: 30px;*/
+        /*border-radius: 10px;*/
+        /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
+    }
+
+    /*media aanpassingen*/
+    .singleview-description {
+        width: 300px;
+        /*height: 300px;*/
+        /*margin: 30px;*/
+    }
+}
+
+/*Telefoons in landscape: van 576px tot 768px;*/
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    /*media aanpassingen*/
+    .singleview-image-container {
+        /*position: relative;*/
+        width: 200px;
+        height: 200px;
+        /*margin: 30px;*/
+        /*border-radius: 10px;*/
+        /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
+    }
+
+    /*media aanpassingen*/
+    .singleview-description {
+        width: 250px;
+        /*height: 300px;*/
+        /*margin: 30px;*/
+    }
+}
+
+/*Telefoons in portrait: tot 576px;*/
+@media screen and (max-width: 576px) {
+    /*media aanpassingen*/
+    .cocktail-container {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        align-items: center;
+    }
+
+    .singleview-inner-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*media aanpassingen*/
+    .singleview-image-container {
+        /*position: relative;*/
+        width: calc(100vw - 120px);
+        height: calc(100vw - 120px);
+        /*margin: 30px;*/
+        /*border-radius: 10px;*/
+        /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
+    }
+
+    /*media aanpassingen*/
+    .singleview-description {
+        width: calc(100vw - 150px);
+        /*height: 300px;*/
+        /*margin: 30px;*/
+    }
 }

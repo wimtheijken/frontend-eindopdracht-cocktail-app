@@ -1,0 +1,23 @@
+.signin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20px;
+    align-items: center;
+    height: 100vh;
+}
+
+.signin-message {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.signin-message a {
+    color: white;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {checkListType} from "../helper/checkListType";
 import {useParams} from "react-router-dom";
@@ -6,10 +6,12 @@ import {checkAmountLetters} from "../helper/checkAmountLetters";
 import {checkFilterKey} from "../helper/checkFilterKey";
 import {checkFilterChoice} from "../helper/checkFilterChoice";
 import {checkAmountLetters2} from "../helper/checkAmountLetters2";
+import {AuthContext} from "./AuthContext";
 
 export const SearchContext = createContext(null)
 
 function SearchContextProvider({children}) {
+    // const {favorites} = useContext(AuthContext);
     const [cocktailName, setCocktailName] = useState('') // naam vd Cocktail gebruikt op home/random pagina
     const [cocktailImage, setCocktailImage] = useState('') // plaatje vd Cocktail gebruikt op home/random pagina
 
@@ -22,17 +24,25 @@ function SearchContextProvider({children}) {
     const [objectType, setObjectType] = useState('')
     const [filterResult, setFilterResult] = useState(null)
     const [resultItem, setResultItem] = useState(null)
-    const [endpoint, setEndpoint] = useState('') // zoek endpoint (checken of deze wel word gebruikt) !!!!!!
+    // const [endpoint, setEndpoint] = useState('') // zoek endpoint (checken of deze wel word gebruikt) !!!!!!
     const [filterList, setFilterList] = useState('')
     const [singleView, setSingleView] = useState('') // singleView cocktail id
+    const [favoritesArray, setFavoritesArray] = useState([]) // favorieten array met alle gegevens van de cocktail
+    const [favoName, setFavoName] = useState(''); // wordt deze gebruikt? !!!!!!
+    const [favorites, setFavorites] = useState([]); // favorieten array met alleen de naam van de cocktail
+    const [isFavo, toggleIsFavo] = useState(false); // wordt deze gebruikt? !!!!!!
+
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+
     const [check, toggleCheck] = useState(false);
     const [searchCheck, toggleSearchCheck] = useState(false);
     const [filterCheck, toggleFilterCheck] = useState(false);
     const [singleCheck, toggleSingleCheck] = useState(false);
 
-    const { filter } = useParams();
+    const [viewport, setViewport] = useState(0); // responsive helper
+
+    const {filter} = useParams();
 
     async function randomCocktail() { // randomfunctie voor de home pagina
         toggleLoading(true)
@@ -61,8 +71,6 @@ function SearchContextProvider({children}) {
             setSearchResult(res.data.drinks)
             toggleFilterCheck(false)
             toggleSearchCheck(true)
-            // console.log(res.data.drinks)
-            // res.data.drinks === null ? toggleError(true) : toggleError(false)
             checkAmountLetters2(search) ? toggleSingleCheck(true) : toggleSingleCheck(false)
             toggleCheck(true)
         } catch (e) {
@@ -75,15 +83,19 @@ function SearchContextProvider({children}) {
         }
         toggleLoading(false);
     }
+
     async function handleError() {
         toggleError(false)
     }
+
     async function handleCheck() {
         toggleCheck(false)
     }
+
     async function handleSingleCheck() {
         toggleSingleCheck(true)
     }
+
     async function handleFilterList(filter) {
         toggleLoading(true)
         toggleError(false)
@@ -91,7 +103,6 @@ function SearchContextProvider({children}) {
         try {
             const res = await axios.get(checkListType(filter))
             setFilterItems(res.data.drinks)
-            // console.log(res.data.drinks)
             toggleSearchCheck(false)
             toggleFilterCheck(true)
             toggleCheck(true)
@@ -109,7 +120,6 @@ function SearchContextProvider({children}) {
         try {
             const res = await axios.get(`${checkFilterKey(key)}${checkFilterChoice(choice)}`)
             setFilterResult(res.data.drinks)
-            // console.log(res.data.drinks)
             toggleSearchCheck(false)
             toggleFilterCheck(true)
             toggleSingleCheck(true)
@@ -144,6 +154,45 @@ function SearchContextProvider({children}) {
         toggleLoading(false);
     }
 
+    async function handleFavorites(storedFavo) {
+        console.log("handleFavorites")
+        const favorites = storedFavo.split(",");
+        favorites.map((favorite)=>{
+            handleFavoritesInfo(favorite)
+        })
+    }
+
+    async function handleFavoritesInfo(favorite) {
+        toggleLoading(true)
+        toggleError(false)
+        try {
+            const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${favorite}`)
+            favoritesArray.push(res.data.drinks[0])
+        } catch (e) {
+            if (axios.isCancel(e)) {
+                console.log('The axios request was cancelled')
+            } else {
+                console.error(e);
+                toggleError(true)
+            }
+        }
+        toggleLoading(false);
+    }
+
+    function favoCheck(cocktailobject, id) {
+        favorites.length === 0 ? toggleIsFavo(true) : toggleIsFavo(false)
+        favorites.includes(id) ? favorites.splice(favorites.indexOf(id), 1,) : favorites.push(id)
+        favoritesArray.includes(cocktailobject) ? favoritesArray.splice(favoritesArray.indexOf(cocktailobject), 1,) : favoritesArray.push(cocktailobject)
+        localStorage.setItem('favo', favorites);
+    }
+
+    function removeFavo() {
+        localStorage.removeItem('favo');
+    }
+    function viewPort() {
+        return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+
     const data = {
         cocktailName: cocktailName,
         setCocktailName: setCocktailName,
@@ -154,8 +203,8 @@ function SearchContextProvider({children}) {
         setSearch: setSearch,
         searchResult: searchResult,
         setSearchResult: setSearchResult,
-        endpoint: endpoint,
-        setEndpoint: setEndpoint,
+        // endpoint: endpoint,
+        // setEndpoint: setEndpoint,
 
         filterType: filterType,
         setFilterType: setFilterType,
@@ -173,6 +222,14 @@ function SearchContextProvider({children}) {
         setResultItem: setResultItem,
         singleView: singleView,
         setSingleView: setSingleView,
+        favoritesArray: favoritesArray,
+        setFavoritesArray: setFavoritesArray,
+        favoName,
+        setFavoName,
+        favorites,
+        setFavorites,
+        isFavo,
+        toggleIsFavo,
 
         error: error,
         setError: toggleError,
@@ -187,6 +244,9 @@ function SearchContextProvider({children}) {
         singleCheck: singleCheck,
         toggleSingleCheck: toggleSingleCheck,
 
+        viewport: viewport,
+        setViewport: setViewport,
+
         randomCocktail: randomCocktail,
         handleSearch: handleSearch,
         handleFilterList: handleFilterList,
@@ -195,7 +255,10 @@ function SearchContextProvider({children}) {
         handleSingleView: handleSingleView,
         handleSingleCheck: handleSingleCheck,
         handleError: handleError,
-
+        viewPort: viewPort,
+        handleFavorites: handleFavorites,
+        favoCheck: favoCheck,
+        removeFavo: removeFavo,
     }
 
     return (

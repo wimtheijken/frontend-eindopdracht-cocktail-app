@@ -7,6 +7,7 @@
     align-items: center;
 }
 
+/*media aanpassingen*/
 .home-image-container {
     position: relative;
     width: 300px;
@@ -27,6 +28,7 @@
     box-shadow: inset 1px 1px 10px 2px rgba(0, 0, 0, 0.5);
 }
 
+/*media aanpassingen*/
 .home-cocktail-name {
     position: absolute;
     color: white;
@@ -46,4 +48,53 @@
 .home-image {
     width: 100%;
     border-radius: 10px;
+}
+
+/*Kleine computerschermen: vanaf 992px;*/
+/*Standaard computerschermen: vanaf 1200px;*/
+/*Grote computerschermen: vanaf 1600px;*/
+@media screen and (min-width: 993px) and (max-width: 1150px) {
+
+}
+
+/*Tablets: vanaf 768px;*/
+@media screen and (min-width: 769px) and (max-width: 992px) {
+
+}
+
+
+/*Telefoons in landscape: van 576px tot 768px;*/
+@media screen and (min-width: 577px) and (max-width: 768px) {
+
+
+}
+
+/*Telefoons in portrait: tot 576px;*/
+@media screen and (max-width: 576px) {
+    /*media aanpassingen*/
+    .home-image-container {
+        position: relative;
+        width: calc(100vw - 120px);
+        height: calc(100vw - 120px);
+        margin: 30px;
+        border-radius: 10px;
+        box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /*media aanpassingen*/
+    .home-cocktail-name {
+        position: absolute;
+        color: white;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        display: block;
+        width: 100%;
+        bottom: 0;
+        height: 50px;
+        padding: 12px;
+        border-radius: 0 0 10px 10px;
+        background-color: rgba(30, 144, 255, 0.5);
+    }
 }

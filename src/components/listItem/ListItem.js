@@ -1,9 +1,13 @@
 import React from 'react';
 import './ListItem.css';
-function ListItem({ name, image, }) {
+function ListItem({ name, image, key, id, value }) {
+    // console.log(key)
+    // console.log(name)
+    // console.log(id)
+    // console.log(value)
     return (
         <div className="listitem-container">
-            <div className="listitem-inner-container">
+            <div key={id} className="listitem-inner-container">
                 <div className="listitem-image-container">
                     <div className="listitem-shadow">
                         <img className="listitem-image"

@@ -1,12 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './SingleView.css';
 import {SearchContext} from "../../context/SearchContext";
+import {AuthContext} from "../../context/AuthContext";
+import {useNavigate} from "react-router-dom";
 
 function SingleView({
+                        cocktailobject,
+    id,
                         image,
                         name,
-                        category,
-                        alcoholic,
                         glass,
                         description,
                         strIngredient1,
@@ -31,7 +33,17 @@ function SingleView({
                         strMeasure10
                     }) {
 
-    const {searchResult} = useContext(SearchContext)
+    const { updateUserInfo } = useContext(AuthContext);
+    const { favorites, favoCheck } = useContext(SearchContext);
+
+    const navigate = useNavigate()
+
+    function handleFavo() {
+        favoCheck(cocktailobject, id)
+        navigate(`/cocktail/${name}`) // om gelijk het hartje actief te maken
+    }
+
+    console.log(favorites)
 
     return (
         <div className="singleview-container">
@@ -45,19 +57,24 @@ function SingleView({
                     </div>
                 </div>
                 <div className="singleview-description">
-                    <h3>Ingredients</h3>
+                    <div className="singleview-favo-container">
+                        <h3>Ingredients</h3><span className={favorites.includes(id) ? "singleview-fill" : "singleview-outline"} onClick={handleFavo}><span
+                        className="material-symbols-outlined">
+favorite
+            </span></span>
+                    </div>
                     <div className="singleview-ingredients">
-                        {strIngredient1 !== null && <p>• {strIngredient1}  {strMeasure1}</p>}
-                        {strIngredient2 !== null && <p>• {strIngredient2}  {strMeasure2}</p>}
-                        {strIngredient3 !== null && <p>• {strIngredient3}  {strMeasure3}</p>}
-                        {strIngredient4 !== null && <p>• {strIngredient4}  {strMeasure4}</p>}
-                        {strIngredient5 !== null && <p>• {strIngredient5}  {strMeasure5}</p>}
+                        {strIngredient1 !== null && <p>• {strIngredient1} {strMeasure1}</p>}
+                        {strIngredient2 !== null && <p>• {strIngredient2} {strMeasure2}</p>}
+                        {strIngredient3 !== null && <p>• {strIngredient3} {strMeasure3}</p>}
+                        {strIngredient4 !== null && <p>• {strIngredient4} {strMeasure4}</p>}
+                        {strIngredient5 !== null && <p>• {strIngredient5} {strMeasure5}</p>}
+                        {strIngredient6 !== null && <p>• {strIngredient6} - {strMeasure6}</p>}
+                        {strIngredient7 !== null && <p>• {strIngredient7} - {strMeasure7}</p>}
+                        {strIngredient8 !== null && <p>• {strIngredient8} - {strMeasure8}</p>}
+                        {strIngredient9 !== null && <p>• {strIngredient9} - {strMeasure9}</p>}
+                        {strIngredient10 !== null && <p>• {strIngredient10} - {strMeasure10}</p>}
                         <p>• {glass}</p>
-                        {/*{strIngredient6 !== null && <p>• {strIngredient6} - {strMeasure6}</p>}*/}
-                        {/*{strIngredient7 !== null && <p>• {strIngredient7} - {strMeasure7}</p>}*/}
-                        {/*{strIngredient8 !== null && <p>• {strIngredient8} - {strMeasure8}</p>}*/}
-                        {/*{strIngredient9 !== null && <p>• {strIngredient9} - {strMeasure9}</p>}*/}
-                        {/*{strIngredient10 !== null && <p>• {strIngredient10} - {strMeasure10}</p>}*/}
                     </div>
                     {description !== null && <h3>Instructions</h3>}
                     <p>{description}</p>
