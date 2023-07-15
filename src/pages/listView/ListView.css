@@ -1,9 +1,11 @@
 /*media aanpassingen*/
 .listview-container {
-    display: flex;
-    justify-content: center;
-    height: 100%;
+    ddisplay: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    height: 100%;
+    top: 0;
     margin-top: 20px;
     align-items: center;
 }

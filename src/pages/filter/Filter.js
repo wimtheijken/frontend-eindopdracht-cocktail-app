@@ -7,7 +7,7 @@ import {getObjectKey} from "../../helper/getObjectKey";
 
 function Filter(props) {
 
-    const { handleFilterChoice, check, filterResult, loading, error, handleFilterList, filterType, setFilterType, filterItems, setFilterList, objectKey, setObjectKey, objectType, setObjectType } = useContext(SearchContext)
+    const { handleFilterChoice, check, filterResult, loading, error, handleFilterList, filterType, setFilterType, filterItems, setFilterList, objectKey, setObjectKey, objectType, setObjectType, setFilterTitle } = useContext(SearchContext)
     const { filter } = useParams();
     const navigate = useNavigate();
     console.log(filter)
@@ -38,7 +38,7 @@ function Filter(props) {
             <form className="filter-inner-container" onChange={handleFormSubmit}>
                 <select className="filter-select" multiple size="7">
                     { filterItems && objectKey === 'Categorie' && filterItems.map((filterItem) => {
-                        return <option className="scroll-page" id={filterItem.strCategory} key={filterItem.strCategory} value={filterItem.strCategory}>{filterItem.strCategory}</option>
+                        return <option className="scroll-page" id={filterItem.strCategory} key={filterItem.strCategory} value={filterItem.strCategory} /*onChange={()=>{handleChange(e)}}*/>{filterItem.strCategory}</option>
                     }) }
                     { filterItems && objectKey === 'Type glas' && filterItems.map((filterItem) => {
                         return <option className="scroll-page" id={filterItem.strGlass} key={filterItem.strGlass} value={filterItem.strGlass}>{filterItem.strGlass}</option>

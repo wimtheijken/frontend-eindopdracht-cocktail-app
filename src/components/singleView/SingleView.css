@@ -42,7 +42,7 @@
 /*media aanpassingen*/
 .singleview-description {
     width: 400px;
-    /*height: 300px;*/
+    /*height: 400%;*/
     margin: 30px;
 }
 
@@ -88,7 +88,6 @@
 
 /*Tablets: vanaf 768px;*/
 @media screen and (min-width: 769px) and (max-width: 992px) {
-    /*media aanpassingen*/
     .singleview-image-container {
         /*position: relative;*/
         /*width: 300px;*/
@@ -98,41 +97,30 @@
         /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
     }
 
-    /*media aanpassingen*/
     .singleview-description {
         width: 300px;
-        /*height: 300px;*/
+        /*height: 1000px;*/
         /*margin: 30px;*/
     }
 }
 
 /*Telefoons in landscape: van 576px tot 768px;*/
 @media screen and (min-width: 577px) and (max-width: 768px) {
-    /*media aanpassingen*/
     .singleview-image-container {
-        /*position: relative;*/
         width: 200px;
         height: 200px;
-        /*margin: 30px;*/
-        /*border-radius: 10px;*/
-        /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
     }
 
-    /*media aanpassingen*/
     .singleview-description {
         width: 250px;
-        /*height: 300px;*/
-        /*margin: 30px;*/
     }
 }
 
 /*Telefoons in portrait: tot 576px;*/
 @media screen and (max-width: 576px) {
-    /*media aanpassingen*/
     .cocktail-container {
         display: flex;
         flex-direction: column;
-        flex-basis: 100%;
         align-items: center;
     }
 
@@ -143,20 +131,12 @@
         align-items: center;
     }
 
-    /*media aanpassingen*/
     .singleview-image-container {
-        /*position: relative;*/
         width: calc(100vw - 120px);
         height: calc(100vw - 120px);
-        /*margin: 30px;*/
-        /*border-radius: 10px;*/
-        /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
     }
 
-    /*media aanpassingen*/
     .singleview-description {
         width: calc(100vw - 150px);
-        /*height: 300px;*/
-        /*margin: 30px;*/
     }
 }

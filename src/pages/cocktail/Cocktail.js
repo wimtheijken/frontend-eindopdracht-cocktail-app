@@ -5,7 +5,7 @@ import SingleView from "../../components/singleView/SingleView";
 import './Cocktail.css';
 
 function Cocktail(props) {
-    const { searchResult, resultItem, handleCheck, handleSingleView, filterCheck, check, singleCheck } = useContext(SearchContext)
+    const { searchResult, resultItem, handleCheck, favoritesArray, handleSingleView, filterCheck, check, singleCheck } = useContext(SearchContext)
     const {cocktail} = useParams();
 
     useEffect(()=>{
@@ -15,7 +15,7 @@ function Cocktail(props) {
     useEffect(() => {
         singleCheck && handleSingleView(cocktail)
     }, [singleCheck])
-
+    console.log(cocktail)
     return (
         <div className="cocktail-container">
             {searchResult && <SingleView
@@ -47,36 +47,6 @@ function Cocktail(props) {
                 strMeasure8={searchResult[0].strMeasure8}
                 strMeasure9={searchResult[0].strMeasure9}
                 strMeasure10={searchResult[0].strMeasure10}
-            />}
-            {resultItem && <SingleView
-                cocktailobject={resultItem}
-                id={resultItem.idDrink}
-                image={resultItem.strDrinkThumb}
-                name={resultItem.strDrink}
-                category={resultItem.strCategory}
-                alcoholic={resultItem.strAlcoholic}
-                glass={resultItem.strGlass}
-                description={resultItem.strInstructions}
-                strIngredient1={resultItem.strIngredient1}
-                strIngredient2={resultItem.strIngredient2}
-                strIngredient3={resultItem.strIngredient3}
-                strIngredient4={resultItem.strIngredient4}
-                strIngredient5={resultItem.strIngredient5}
-                strIngredient6={resultItem.strIngredient6}
-                strIngredient7={resultItem.strIngredient7}
-                strIngredient8={resultItem.strIngredient8}
-                strIngredient9={resultItem.strIngredient9}
-                strIngredient10={resultItem.strIngredient10}
-                strMeasure1={resultItem.strMeasure1}
-                strMeasure2={resultItem.strMeasure2}
-                strMeasure3={resultItem.strMeasure3}
-                strMeasure4={resultItem.strMeasure4}
-                strMeasure5={resultItem.strMeasure5}
-                strMeasure6={resultItem.strMeasure6}
-                strMeasure7={resultItem.strMeasure7}
-                strMeasure8={resultItem.strMeasure8}
-                strMeasure9={resultItem.strMeasure9}
-                strMeasure10={resultItem.strMeasure10}
             />}
         </div>
     );

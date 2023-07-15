@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# Cocktail applicatie handleiding
+
+## inleiding
+
+Het vinden van een cocktailrecept kan vaak een moeilijk en omslachtig proces kan zijn. Er zijn talloze websites en boeken met recepten, maar deze zijn vaak moeilijk te navigeren. Daarom wil ik een applicatie ontwikkelen die gebruikers in staat stelt om makkelijk cocktails kan vinden en cocktailrecepten kan teruggeven. De cocktailapp is bedoeld om Bezoekers een eenvoudige en intuïtieve manier te bieden om hun favoriete of nog nieuw te ontdekken cocktails te vinden, te bereiden en te genieten. De applicatie maakt gebruik van een externe databron om cocktailrecepten terug te geven met verschillende ingrediënten, stappen en technieken. Het doel van deze applicatie is om gebruikers een breed scala aan cocktailrecepten te bieden, waaronder traditionele en exotische recepten.
+
+In dit document beschrijf ik het functionele ontwerp voor een applicatie die op basis van een API gebruik maakt van een externe databron om cocktailrecepten terug te geven. De applicatie zal de gebruiker in staat stellen om snel en eenvoudig verschillende cocktailrecepten te zoeken, te bekijken en te bereiden. De applicatie zal ook de mogelijkheid bieden om op basis van een aantal criteria zoals categorie, glastype, ingrediënten en soort drank, cocktailrecepten op te zoeken.
+
+Het probleem is dat mensen niet altijd de tijd of het kennisniveau hebben om een goede cocktail te maken. Daarom hebben veel mensen behoefte aan een applicatie die hen helpt bij het vinden van een geschikt recept. Een applicatie voor cocktailrecepten zou gebruikers in staat stellen om de recepten te bekijken en te zoeken op basis van ingrediënten, smaak, of zelfs de naam van de cocktail. De applicatie stelt de gebruiker in staat om de perfecte cocktail te bereiden voor elke gelegenheid.
+
+## NOVI Educational Backend
+
+Deze backend is gebouwd door NOVI en mag alleen worden gebruikt voor opleidings-doeleinden.
+
+Wanneer studenten de Frontend leerlijn volgen en een backend nodig hebben voor hun eindopdracht, kunnen zij ervoor kiezen om de NOVI backend te gebruiken. Deze backend ondersteunt alleen het registeren, inloggen en aanpassen van gebuikers. Het is niet mogelijk om andere informatie (naast email, gebruikersnaam, wachtwoord en role) op te slaan in deze database. Let op: de database met gebruikers wordt vaak binnen één uur weer geleegd.
+
+De backend draait op een Heroku server. Deze server wordt automatisch inactief wanneer er een tijdje geen requests gemaakt worden. De eerste request die de server weer uit de 'slaapstand' haalt zal daarom maximaal 30 seconden op zich kunnen laten wachten. Daarna zal de responsetijd normaal zijn. Voer daarom altijd eerst een test-request uit.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

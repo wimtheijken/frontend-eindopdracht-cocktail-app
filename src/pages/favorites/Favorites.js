@@ -1,17 +1,17 @@
-import React, {useContext, useEffect} from 'react';
-import {Link} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
+import React, { useContext } from 'react';
+import {Link, useParams} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import ListItem from "../../components/listItem/ListItem";
 import './Favorites.css';
-import axios from "axios";
 
 function Favorites(props) {
 
-    const {  } = useContext(AuthContext);
-
     const { favoritesArray, handleCheck, handleSingleCheck } = useContext(SearchContext)
 
+    handleCheck()
+    handleSingleCheck()
+
+    console.log("favoritesArray")
     console.log(favoritesArray)
 
     return (
@@ -23,7 +23,7 @@ favorite
             </span></span></h1>
                 <div className="favorites-wrap-container">
                     { favoritesArray.map((item) => {
-                        return <Link key={item.idDrink} to={"../cocktail/"+item.idDrink}><ListItem
+                        return <Link to={"../cocktail/"+item.idDrink}><ListItem
                             className="scroll-page"
                             id={item.idDrink}
                             key={item.idDrink}

@@ -24,7 +24,7 @@ function SearchContextProvider({children}) {
     const [objectType, setObjectType] = useState('')
     const [filterResult, setFilterResult] = useState(null)
     const [resultItem, setResultItem] = useState(null)
-    // const [endpoint, setEndpoint] = useState('') // zoek endpoint (checken of deze wel word gebruikt) !!!!!!
+
     const [filterList, setFilterList] = useState('')
     const [singleView, setSingleView] = useState('') // singleView cocktail id
     const [favoritesArray, setFavoritesArray] = useState([]) // favorieten array met alle gegevens van de cocktail
@@ -44,13 +44,15 @@ function SearchContextProvider({children}) {
 
     const {filter} = useParams();
 
-    async function randomCocktail() { // randomfunctie voor de home pagina
+    // randomfunctie voor de home pagina
+    async function randomCocktail() {
         toggleLoading(true)
         toggleError(false)
         try {
             const {data} = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php');
             setCocktailName(data.drinks[0].strDrink)
             setCocktailImage(data.drinks[0].strDrinkThumb)
+            setSingleView(data.drinks[0].idDrink)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -142,7 +144,7 @@ function SearchContextProvider({children}) {
             toggleSearchCheck(true)
             toggleSingleCheck(false)
             toggleCheck(true)
-            // console.log(res.value.drinks)
+            console.log(res.value.drinks)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -154,6 +156,8 @@ function SearchContextProvider({children}) {
         toggleLoading(false);
     }
 
+    //  ----------------- FILTER HANDLING----------------------- //
+    // haalt de favorieten uit de localStorage en zet ze in een namen array
     async function handleFavorites(storedFavo) {
         console.log("handleFavorites")
         const favorites = storedFavo.split(",");
@@ -161,13 +165,14 @@ function SearchContextProvider({children}) {
             handleFavoritesInfo(favorite)
         })
     }
-
+    // en haalt ze 1 voor 1 terug en zet ze weer in een volledige array
     async function handleFavoritesInfo(favorite) {
         toggleLoading(true)
         toggleError(false)
         try {
             const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${favorite}`)
             favoritesArray.push(res.data.drinks[0])
+            toggleSingleCheck(true)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -176,9 +181,10 @@ function SearchContextProvider({children}) {
                 toggleError(true)
             }
         }
+        toggleIsFavo(true)
         toggleLoading(false);
     }
-
+    // zet favorieten in een array en in localStorage
     function favoCheck(cocktailobject, id) {
         favorites.length === 0 ? toggleIsFavo(true) : toggleIsFavo(false)
         favorites.includes(id) ? favorites.splice(favorites.indexOf(id), 1,) : favorites.push(id)
@@ -189,6 +195,8 @@ function SearchContextProvider({children}) {
     function removeFavo() {
         localStorage.removeItem('favo');
     }
+
+    // controleerd de viewport breedte voor responsive weergave
     function viewPort() {
         return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     }
@@ -203,8 +211,6 @@ function SearchContextProvider({children}) {
         setSearch: setSearch,
         searchResult: searchResult,
         setSearchResult: setSearchResult,
-        // endpoint: endpoint,
-        // setEndpoint: setEndpoint,
 
         filterType: filterType,
         setFilterType: setFilterType,

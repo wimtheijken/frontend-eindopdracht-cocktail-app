@@ -23,7 +23,7 @@ function SignIn(props) {
                 username,
                 password,
             });
-            login(res.data.accessToken, '/profile');
+            login(res.data.accessToken, '/menu');
             console.log(res)
             console.log(res.data.accessToken)
         } catch (e) {

@@ -5,43 +5,59 @@ import {AuthContext} from "../../context/AuthContext";
 import './Home.css';
 
 function Home(props) {
-    const { randomCocktail, cocktailName, cocktailImage, loading, error } = useContext(SearchContext)
-    const {isAuth, auth} = useContext(AuthContext);
-    // console.log(auth)
+    const { randomCocktail, cocktailName, cocktailImage, loading, error, handleCheck, handleSingleCheck, singleView } = useContext(SearchContext)
+    const { isAuth } = useContext(AuthContext);
 
     useEffect(() => {
         randomCocktail()
     }, [])
-    console.log(isAuth)
+
+    handleCheck()
+    handleSingleCheck()
+
     return (
         <div className="home-container">
             <h1>Cocktail Assistant</h1>
             {isAuth
                 ?
-                <Link to={"../cocktail/"+cocktailName} key={cocktailName}>
-                    <div className="home-image-container">
-                    {cocktailName && <div className="home-shadow">
-                        <img className="home-image"
-                             src={cocktailImage}
-                             alt={cocktailName}/>
-                    </div>}
-                    <div className="home-cocktail-name">{cocktailName}</div>
-                </div></Link>
+                <div className="home-inner-container">
+                    <Link to={"../cocktail/" + singleView} key={singleView}>
+                        <div className="home-image-container">
+                            {cocktailName && <div className="home-shadow">
+                                <img className="home-image"
+                                     src={cocktailImage}
+                                     alt={cocktailName}/>
+                            </div>}
+                            <div className="home-cocktail-name">{cocktailName}</div>
+                        </div>
+                    </Link>
+                    <p className="home-text"><i>Klik op home</i> en laat u verrassen door een willekeurig geselecteerde cocktail.</p>
+                </div>
                 :
-                <div className="home-image-container">
-                    {cocktailName && <div className="home-shadow">
-                        <img className="home-image"
-                             src={cocktailImage}
-                             alt={cocktailName}/>
-                    </div>}
-                    <div className="home-cocktail-name">{cocktailName}</div>
+                <div className="home-inner-container">
+                    <div className="home-image-container">
+                        {cocktailName &&
+                            <div>
+                                <div className="home-shadow">
+
+                                    <img className="home-image"
+                                         src={cocktailImage}
+                                         alt={cocktailName}/>
+                                </div>
+                                <div className="home-cocktail-name">{cocktailName}</div>
+                            </div>
+                        }
+                    </div>
+                    <p className="home-text">Deze applicatie biedt een keur aan cocktails met hun
+                        bereidingswijze.
+                        Registreer en/of login om toegang te krijgen tot heel veel cocktails en hun
+                        bereidingswijze.</p>
+                    <p className="home-text"><i>Klik op home</i> en laat u verrassen door een willekeurig geselecteerde cocktail.</p>
                 </div>
             }
-
             {loading && <p>Loading...</p>}
             {error && <p>Oops... Er is iets mis gegaan.</p>}
         </div>
     );
 }
-
 export default Home;

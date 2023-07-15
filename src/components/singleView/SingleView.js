@@ -3,10 +3,11 @@ import './SingleView.css';
 import {SearchContext} from "../../context/SearchContext";
 import {AuthContext} from "../../context/AuthContext";
 import {useNavigate} from "react-router-dom";
+import Button from "../button/Button";
 
 function SingleView({
                         cocktailobject,
-    id,
+                        id,
                         image,
                         name,
                         glass,
@@ -74,10 +75,11 @@ favorite
                         {strIngredient8 !== null && <p>• {strIngredient8} - {strMeasure8}</p>}
                         {strIngredient9 !== null && <p>• {strIngredient9} - {strMeasure9}</p>}
                         {strIngredient10 !== null && <p>• {strIngredient10} - {strMeasure10}</p>}
-                        <p>• {glass}</p>
+                        <p><i>{glass}</i></p>
                     </div>
                     {description !== null && <h3>Instructions</h3>}
                     <p>{description}</p>
+                    {/*<Button type="button" onClick={() => navigate(-1)} className="singleview-button">&#8592; Terug</Button>*/}
                 </div>
             </div>
         </div>

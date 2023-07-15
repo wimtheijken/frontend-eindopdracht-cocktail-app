@@ -69,7 +69,7 @@ function AuthContextProvider({children}) {
                 status: "done"
             })
             console.log('De gebruiker is ingelogd!')
-            if (redirect) navigate('/profile');
+            if (redirect) navigate('/menu');
         } catch (e) {
             console.error(e)
         }
