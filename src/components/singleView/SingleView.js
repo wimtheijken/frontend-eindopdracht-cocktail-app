@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import './SingleView.css';
-import {SearchContext} from "../../context/SearchContext";
-import {AuthContext} from "../../context/AuthContext";
 import {useNavigate} from "react-router-dom";
-import Button from "../button/Button";
+import {SearchContext} from "../../context/SearchContext";
+import Button from "../button/Button"; // ik heb de backbutton uitgezet omdat deze niet naar behoren werkt
+import './SingleView.css';
+
 
 function SingleView({
                         cocktailobject,
@@ -34,7 +34,6 @@ function SingleView({
                         strMeasure10
                     }) {
 
-    const { updateUserInfo } = useContext(AuthContext);
     const { favorites, favoCheck } = useContext(SearchContext);
 
     const navigate = useNavigate()
@@ -43,8 +42,6 @@ function SingleView({
         favoCheck(cocktailobject, id)
         navigate(`/cocktail/${name}`) // om gelijk het hartje actief te maken
     }
-
-    console.log(favorites)
 
     return (
         <div className="singleview-container">

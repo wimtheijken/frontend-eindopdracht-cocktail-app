@@ -1,22 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {NavLink, useParams} from 'react-router-dom';
-import Button from "../button/Button";
-import fetchData from "../../pages/home/Home";
-import './NavBar.css';
+import {NavLink} from 'react-router-dom';
 import {SearchContext} from "../../context/SearchContext";
 import {AuthContext} from "../../context/AuthContext";
+import Button from "../button/Button";
+import './NavBar.css';
 
 function NavBar({className, labelA, labelB, labelC, labelD, pathA, pathB, pathC, pathD}) {
-    const {
-        randomCocktail,
-        handleFilterList,
-        filterType,
-        viewport,
-        setViewport,
-        viewPort,
-    } = useContext(SearchContext)
+    const { randomCocktail, viewport, setViewport, viewPort,} = useContext(SearchContext)
     const {isAuth} = useContext(AuthContext);
-    const {filter} = useParams();
 
     function handleResize() {
         setViewport(viewPort())
@@ -26,7 +17,6 @@ function NavBar({className, labelA, labelB, labelC, labelD, pathA, pathB, pathC,
         handleResize()
     }, [])
 
-    // console.log(viewport)
     window.addEventListener('resize', handleResize)
 
     return (

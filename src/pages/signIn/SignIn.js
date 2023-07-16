@@ -61,6 +61,7 @@ function SignIn(props) {
             </form>
             {loading && <p>Loading...</p>}
             {error && <p>Oops... Er is iets mis gegaan. Probeer het opnieuw.</p>}
+            {error && <p>Als u nog geen account heeft, dient u zich eerst te registreren.</p>}
         </div>
     );
 }

@@ -15,6 +15,7 @@ function Cocktail(props) {
     useEffect(() => {
         singleCheck && handleSingleView(cocktail)
     }, [singleCheck])
+
     console.log(cocktail)
     return (
         <div className="cocktail-container">

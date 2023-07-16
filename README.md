@@ -1,86 +1,63 @@
-# Cocktail applicatie handleiding
+# Cocktail Bar
 
-## inleiding
+## Inleiding
 
-Het vinden van een cocktailrecept kan vaak een moeilijk en omslachtig proces kan zijn. Er zijn talloze websites en boeken met recepten, maar deze zijn vaak moeilijk te navigeren. Daarom wil ik een applicatie ontwikkelen die gebruikers in staat stelt om makkelijk cocktails kan vinden en cocktailrecepten kan teruggeven. De cocktailapp is bedoeld om Bezoekers een eenvoudige en intuïtieve manier te bieden om hun favoriete of nog nieuw te ontdekken cocktails te vinden, te bereiden en te genieten. De applicatie maakt gebruik van een externe databron om cocktailrecepten terug te geven met verschillende ingrediënten, stappen en technieken. Het doel van deze applicatie is om gebruikers een breed scala aan cocktailrecepten te bieden, waaronder traditionele en exotische recepten.
+Het vinden van een cocktailrecept kan vaak een moeilijk en omslachtig proces kan zijn. Er zijn talloze websites en boeken met recepten, maar deze zijn vaak moeilijk te navigeren.  De cocktailapp is bedoeld om Bezoekers een eenvoudige en intuïtieve manier te bieden om hun favoriete of nog nieuw te ontdekken cocktails te vinden, te bereiden en te genieten. De applicatie maakt gebruik van een externe databron om cocktailrecepten terug te geven. Het doel van deze applicatie is om gebruikers een breed scala aan cocktailrecepten te bieden.
 
-In dit document beschrijf ik het functionele ontwerp voor een applicatie die op basis van een API gebruik maakt van een externe databron om cocktailrecepten terug te geven. De applicatie zal de gebruiker in staat stellen om snel en eenvoudig verschillende cocktailrecepten te zoeken, te bekijken en te bereiden. De applicatie zal ook de mogelijkheid bieden om op basis van een aantal criteria zoals categorie, glastype, ingrediënten en soort drank, cocktailrecepten op te zoeken.
+![screenshot-singlepage](src/assets/screenshot-singlepage.png)
+## NOVI Backend
 
-Het probleem is dat mensen niet altijd de tijd of het kennisniveau hebben om een goede cocktail te maken. Daarom hebben veel mensen behoefte aan een applicatie die hen helpt bij het vinden van een geschikt recept. Een applicatie voor cocktailrecepten zou gebruikers in staat stellen om de recepten te bekijken en te zoeken op basis van ingrediënten, smaak, of zelfs de naam van de cocktail. De applicatie stelt de gebruiker in staat om de perfecte cocktail te bereiden voor elke gelegenheid.
+De backend gebouwd door NOVI draait op een Heroku server. Deze backend ondersteunt alleen het registeren, inloggen en aanpassen van gebuikers. Deze server wordt automatisch inactief wanneer er een tijdje geen requests gemaakt worden. De eerste request die de server weer uit de 'slaapstand' haalt zal daarom maximaal 30 seconden op zich kunnen laten wachten. Daarna zal de responsetijd normaal zijn. Daarom heb ik een test-request in het registreer formulier gezet. Let op: de database met gebruikers wordt vaak binnen één uur weer geleegd. Het is dus mogelijk dat u na verloop tijd opnieuw moet registreren.
 
-## NOVI Educational Backend
+## Applicatie starten
+Als u het project gecloned hebt naar uw locale machine, installeer u eerst de `node_modules` door het volgende
+commando in de terminal te runnen:
 
-Deze backend is gebouwd door NOVI en mag alleen worden gebruikt voor opleidings-doeleinden.
+### `npm install`
 
-Wanneer studenten de Frontend leerlijn volgen en een backend nodig hebben voor hun eindopdracht, kunnen zij ervoor kiezen om de NOVI backend te gebruiken. Deze backend ondersteunt alleen het registeren, inloggen en aanpassen van gebuikers. Het is niet mogelijk om andere informatie (naast email, gebruikersnaam, wachtwoord en role) op te slaan in deze database. Let op: de database met gebruikers wordt vaak binnen één uur weer geleegd.
-
-De backend draait op een Heroku server. Deze server wordt automatisch inactief wanneer er een tijdje geen requests gemaakt worden. De eerste request die de server weer uit de 'slaapstand' haalt zal daarom maximaal 30 seconden op zich kunnen laten wachten. Daarna zal de responsetijd normaal zijn. Voer daarom altijd eerst een test-request uit.
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+Wanneer dit klaar is, kunt u de applicatie starten met behulp van:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+of gebruik de WebStorm knop (npm start). Open [http://localhost:3000](http://localhost:3000/) om de pagina in de browser
+te bekijken. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Andere beschikbare scripts
 
+"build": "react-scripts build",
+"test": "react-scripts test",
+"eject": "react-scripts eject"
+### `npm build`
 ### `npm test`
+### `npm eject`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm update`
 
-### `npm run build`
+### `controle + C`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installatiehandleiding
+In de voorgaande opdrachten heb je jouw ontwikkelwerk afgerond. Om ervoor te zorgen dat ook andere ontwikkelaars jouw project kunnen gebruiken, is het belangrijk een installatiehandleiding te schrijven waarin beschreven wordt wat zij hiervoor nodig hebben. Je schrijft jouw installatiehandleiding voor een mede-developer, maar zorgt ervoor dat dit ook te volgen is wanneer deze persoon geen enkele ervaring heeft binnen het frontend-landschap.
+Het bevat:
 
-### `npm run eject`
+### Een inleiding met korte beschrijving van de functionaliteit van de applicatie en screenshot van
+de belangrijkste pagina van de applicatie.
+### Lijst van benodigdheden om de applicatie te kunnen runnen (zoals runtime environments, een
+API key of gegevens van een externe backend). Let op: je vraagt de nakijkende docent nooit zelf
+een API key aan te maken. Jij levert zelf jouw API key aan in de handleiding;
+### Een stappenplan met daarin installatie instructies.
+### Met welke gegevens er ingelogd kan worden indien er al accounts beschikbaar zijn.
+### Welke andere npm commando’s er nog beschikbaar zijn in deze applicatie en waar deze voor
+dienen. Op te leveren:
+### Zelfgeschreven README.md in de root van de React projectmap (.md)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Available Scripts
+```
+https://github.com/wimtheijken/frontend-eindopdracht-cocktail-app
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm install
+```

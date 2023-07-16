@@ -11,11 +11,13 @@ import {AuthContext} from "./AuthContext";
 export const SearchContext = createContext(null)
 
 function SearchContextProvider({children}) {
-    // const {favorites} = useContext(AuthContext);
+
+    // Naam en image van de cocktail op de homepage
     const [cocktailName, setCocktailName] = useState('') // naam vd Cocktail gebruikt op home/random pagina
     const [cocktailImage, setCocktailImage] = useState('') // plaatje vd Cocktail gebruikt op home/random pagina
 
-    const [search, setSearch] = useState('') // zoek-term op de zoekpagina
+    // zoekterm en zoek resultaten
+    const [search, setSearch] = useState('') // zoek-term op de zoekpagina ook gebruikt als titel bij een zoekresultaten lijst
     const [searchResult, setSearchResult] = useState(null) // zoek resultaten van de zoek-term
 
     const [filterType, setFilterType] = useState('') // filtertype: categorie, glas, ingredient of alcohol
@@ -28,12 +30,12 @@ function SearchContextProvider({children}) {
     const [filterList, setFilterList] = useState('')
     const [singleView, setSingleView] = useState('') // singleView cocktail id
     const [favoritesArray, setFavoritesArray] = useState([]) // favorieten array met alle gegevens van de cocktail
-    const [favoName, setFavoName] = useState(''); // wordt deze gebruikt? !!!!!!
+    // const [favoName, setFavoName] = useState(''); // wordt deze gebruikt? !!!!!!
     const [favorites, setFavorites] = useState([]); // favorieten array met alleen de naam van de cocktail
-    const [isFavo, toggleIsFavo] = useState(false); // wordt deze gebruikt? !!!!!!
+    // const [isFavo, toggleIsFavo] = useState(false); // wordt deze gebruikt? !!!!!!
 
-    const [loading, toggleLoading] = useState(false);
-    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false); // Geeft de gebruiker een update bij langzame laadtijd
+    const [error, toggleError] = useState(false); // Geeft de gebruiker informatie bij een error melding
 
     const [check, toggleCheck] = useState(false);
     const [searchCheck, toggleSearchCheck] = useState(false);
@@ -41,8 +43,6 @@ function SearchContextProvider({children}) {
     const [singleCheck, toggleSingleCheck] = useState(false);
 
     const [viewport, setViewport] = useState(0); // responsive helper
-
-    const {filter} = useParams();
 
     // randomfunctie voor de home pagina
     async function randomCocktail() {
@@ -75,6 +75,8 @@ function SearchContextProvider({children}) {
             toggleSearchCheck(true)
             checkAmountLetters2(search) ? toggleSingleCheck(true) : toggleSingleCheck(false)
             toggleCheck(true)
+            console.log("singleCheck")
+            console.log(singleCheck)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -124,7 +126,7 @@ function SearchContextProvider({children}) {
             setFilterResult(res.data.drinks)
             toggleSearchCheck(false)
             toggleFilterCheck(true)
-            toggleSingleCheck(true)
+            // toggleSingleCheck(true)
             toggleCheck(true)
         } catch (e) {
             console.error(e)
@@ -142,9 +144,8 @@ function SearchContextProvider({children}) {
             setSearchResult(res.data.drinks)
             toggleFilterCheck(false)
             toggleSearchCheck(true)
-            toggleSingleCheck(false)
+            // toggleSingleCheck(false)
             toggleCheck(true)
-            console.log(res.value.drinks)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -165,6 +166,7 @@ function SearchContextProvider({children}) {
             handleFavoritesInfo(favorite)
         })
     }
+
     // en haalt ze 1 voor 1 terug en zet ze weer in een volledige array
     async function handleFavoritesInfo(favorite) {
         toggleLoading(true)
@@ -172,7 +174,7 @@ function SearchContextProvider({children}) {
         try {
             const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${favorite}`)
             favoritesArray.push(res.data.drinks[0])
-            toggleSingleCheck(true)
+            // toggleSingleCheck(true)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -181,20 +183,20 @@ function SearchContextProvider({children}) {
                 toggleError(true)
             }
         }
-        toggleIsFavo(true)
+        // toggleIsFavo(true)
         toggleLoading(false);
     }
     // zet favorieten in een array en in localStorage
     function favoCheck(cocktailobject, id) {
-        favorites.length === 0 ? toggleIsFavo(true) : toggleIsFavo(false)
+        // favorites.length === 0 ? toggleIsFavo(true) : toggleIsFavo(false)
         favorites.includes(id) ? favorites.splice(favorites.indexOf(id), 1,) : favorites.push(id)
-        favoritesArray.includes(cocktailobject) ? favoritesArray.splice(favoritesArray.indexOf(cocktailobject), 1,) : favoritesArray.push(cocktailobject)
+        // favoritesArray.includes(cocktailobject) ? favoritesArray.splice(favoritesArray.indexOf(cocktailobject), 1,) : favoritesArray.push(cocktailobject)
         localStorage.setItem('favo', favorites);
     }
-
-    function removeFavo() {
-        localStorage.removeItem('favo');
-    }
+    // haalt de favorieten uit de localStorage
+    // function removeFavo() {
+    //     localStorage.removeItem('favo');
+    // }
 
     // controleerd de viewport breedte voor responsive weergave
     function viewPort() {
@@ -230,12 +232,12 @@ function SearchContextProvider({children}) {
         setSingleView: setSingleView,
         favoritesArray: favoritesArray,
         setFavoritesArray: setFavoritesArray,
-        favoName,
-        setFavoName,
-        favorites,
-        setFavorites,
-        isFavo,
-        toggleIsFavo,
+        // favoName,
+        // setFavoName,
+        favorites: favorites,
+        setFavorites: setFavorites,
+        // isFavo,
+        // toggleIsFavo,
 
         error: error,
         setError: toggleError,
@@ -264,7 +266,7 @@ function SearchContextProvider({children}) {
         viewPort: viewPort,
         handleFavorites: handleFavorites,
         favoCheck: favoCheck,
-        removeFavo: removeFavo,
+        // removeFavo: removeFavo,
     }
 
     return (

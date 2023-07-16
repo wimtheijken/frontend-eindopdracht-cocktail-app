@@ -9,14 +9,9 @@ export const AuthContext = createContext(null)
 
 function AuthContextProvider({children}) {
 
-    const { toggleError, toggleLoading, handleFavorites, removeFavo } = useContext(SearchContext)
+    const { toggleError, toggleLoading, handleFavorites, setFavoritesArray, setFavorites } = useContext(SearchContext)
 
     const navigate = useNavigate();
-
-    // bijhouden van de favorieten
-    // const [favoName, setFavoName] = useState('');
-    // const [favorites, setFavorites] = useState([]);
-    // const [isFavo, toggleIsFavo] = useState(false);
 
     const [auth, setAuth] = useState({
         isAuth: false,
@@ -72,12 +67,16 @@ function AuthContextProvider({children}) {
             if (redirect) navigate('/menu');
         } catch (e) {
             console.error(e)
+            toggleError(true)
         }
+        toggleLoading(false)
     }
 
     function logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('favo');
+        setFavoritesArray([])
+        setFavorites([])
         setAuth({
             ...auth,
             isAuth: false,
@@ -91,16 +90,8 @@ function AuthContextProvider({children}) {
     const data = {
         isAuth: auth.isAuth,
         user: auth.user,
-        // favoName,
-        // setFavoName,
-        // favorites,
-        // setFavorites,
-        // isFavo,
-        // toggleIsFavo,
         logout: logout,
         login: login,
-        // favoCheck: favoCheck,
-        // updateUserInfo: updateUserInfo,
     }
 
     return (

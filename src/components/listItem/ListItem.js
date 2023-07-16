@@ -1,6 +1,6 @@
 import React from 'react';
 import './ListItem.css';
-function ListItem({ name, image, key, id, value }) {
+function ListItem({ name, image, id }) {
 
     return (
         <div className="listitem-container">

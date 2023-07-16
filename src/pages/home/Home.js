@@ -17,7 +17,7 @@ function Home(props) {
 
     return (
         <div className="home-container">
-            <h1>Cocktail Assistant</h1>
+            <h1>Cocktail Bar</h1>
             {isAuth
                 ?
                 <div className="home-inner-container">
