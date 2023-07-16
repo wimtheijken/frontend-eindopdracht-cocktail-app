@@ -1,15 +1,17 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {SearchContext} from "../../context/SearchContext";
 import {AuthContext} from "../../context/AuthContext";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import './Menu.css';
+import './Profiel.css';
 
-function Menu(props) {
+function Profiel(props) {
     const { logout, user: { username, email }} = useContext(AuthContext);
-    const { favoritesArray, handleCheck, handleSingleCheck } = useContext(SearchContext)
+    const { favoritesArray, handleCheck, handleSingleCheck, error, loading } = useContext(SearchContext)
 
-    handleCheck()
-    handleSingleCheck()
+    useEffect(()=>{
+        handleCheck()
+        handleSingleCheck()
+    },[])
 
     return (
         <div className="menu-container">
@@ -28,8 +30,10 @@ function Menu(props) {
                 </ul>
                 <Link to={'/'} onClick={logout}><h2 className="menu-uitloggen">Uitloggen</h2></Link>
             </div>
+            {loading && <p>Loading...</p>}
+            {error && <p>Oops... Er is iets mis gegaan.</p>}
         </div>
     );
 }
 
-export default Menu;
+export default Profiel;

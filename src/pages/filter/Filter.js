@@ -1,13 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
-import Button from "../../components/button/Button";
-import './Filter.css';
+import React, {useContext, useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import {getObjectKey} from "../../helper/getObjectKey";
+import './Filter.css';
 
 function Filter(props) {
 
-    const { handleFilterChoice, check, filterResult, loading, error, handleFilterList, filterType, setFilterType, filterItems, setFilterList, objectKey, setObjectKey, objectType, setObjectType, setFilterTitle } = useContext(SearchContext)
+    const { handleFilterChoice, check, filterResult, loading, error, handleFilterList, setFilterType, filterItems, objectKey, setObjectKey, objectType, setObjectType } = useContext(SearchContext)
     const { filter } = useParams();
     const navigate = useNavigate();
     console.log(filter)
@@ -51,6 +50,8 @@ function Filter(props) {
                     }) }
                 </select>
             </form>
+            {loading && <p>Loading...</p>}
+            {error && <p>Oops... Er is iets mis gegaan.</p>}
         </div>
     );
 }

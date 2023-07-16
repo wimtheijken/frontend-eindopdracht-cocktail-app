@@ -1,12 +1,10 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {checkListType} from "../helper/checkListType";
-import {useParams} from "react-router-dom";
 import {checkAmountLetters} from "../helper/checkAmountLetters";
 import {checkFilterKey} from "../helper/checkFilterKey";
 import {checkFilterChoice} from "../helper/checkFilterChoice";
 import {checkAmountLetters2} from "../helper/checkAmountLetters2";
-import {AuthContext} from "./AuthContext";
 
 export const SearchContext = createContext(null)
 
@@ -23,16 +21,14 @@ function SearchContextProvider({children}) {
     const [filterType, setFilterType] = useState('') // filtertype: categorie, glas, ingredient of alcohol
     const [filterItems, setFilterItems] = useState(null)
     const [objectKey, setObjectKey] = useState('')
-    const [objectType, setObjectType] = useState('')
+    const [objectType, setObjectType] = useState('') // filter sub categorie
     const [filterResult, setFilterResult] = useState(null)
     const [resultItem, setResultItem] = useState(null)
 
     const [filterList, setFilterList] = useState('')
     const [singleView, setSingleView] = useState('') // singleView cocktail id
     const [favoritesArray, setFavoritesArray] = useState([]) // favorieten array met alle gegevens van de cocktail
-    // const [favoName, setFavoName] = useState(''); // wordt deze gebruikt? !!!!!!
     const [favorites, setFavorites] = useState([]); // favorieten array met alleen de naam van de cocktail
-    // const [isFavo, toggleIsFavo] = useState(false); // wordt deze gebruikt? !!!!!!
 
     const [loading, toggleLoading] = useState(false); // Geeft de gebruiker een update bij langzame laadtijd
     const [error, toggleError] = useState(false); // Geeft de gebruiker informatie bij een error melding
@@ -44,7 +40,7 @@ function SearchContextProvider({children}) {
 
     const [viewport, setViewport] = useState(0); // responsive helper
 
-    // randomfunctie voor de home pagina
+    //  --------------- HANDLING RANDOM HOMEPAGE ------------------- //
     async function randomCocktail() {
         toggleLoading(true)
         toggleError(false)
@@ -65,6 +61,7 @@ function SearchContextProvider({children}) {
         toggleLoading(false)
     }
 
+    //  ----------------- HANDLING SEARCH ----------------------- //
     async function handleSearch(search) {
         toggleLoading(true)
         toggleError(false)
@@ -75,8 +72,6 @@ function SearchContextProvider({children}) {
             toggleSearchCheck(true)
             checkAmountLetters2(search) ? toggleSingleCheck(true) : toggleSingleCheck(false)
             toggleCheck(true)
-            console.log("singleCheck")
-            console.log(singleCheck)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -87,19 +82,8 @@ function SearchContextProvider({children}) {
         }
         toggleLoading(false);
     }
-
-    async function handleError() {
-        toggleError(false)
-    }
-
-    async function handleCheck() {
-        toggleCheck(false)
-    }
-
-    async function handleSingleCheck() {
-        toggleSingleCheck(true)
-    }
-
+    //  ----------------- HANDLING FILTER ----------------------- //
+    // filterlist
     async function handleFilterList(filter) {
         toggleLoading(true)
         toggleError(false)
@@ -116,7 +100,7 @@ function SearchContextProvider({children}) {
         }
         toggleLoading(false);
     }
-
+    // sub filterlist
     async function handleFilterChoice(key, choice) {
         toggleLoading(true)
         toggleError(false)
@@ -126,7 +110,7 @@ function SearchContextProvider({children}) {
             setFilterResult(res.data.drinks)
             toggleSearchCheck(false)
             toggleFilterCheck(true)
-            // toggleSingleCheck(true)
+            toggleSingleCheck(true)
             toggleCheck(true)
         } catch (e) {
             console.error(e)
@@ -135,16 +119,16 @@ function SearchContextProvider({children}) {
         toggleLoading(false);
     }
 
+    //  ----------------- HANDLING SINGLEVIEW  ----------------------- //
     async function handleSingleView(cocktail) {
         toggleLoading(true)
         toggleError(false)
-        console.log("handleSingleView")
         try {
             const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktail}`)
             setSearchResult(res.data.drinks)
             toggleFilterCheck(false)
             toggleSearchCheck(true)
-            // toggleSingleCheck(false)
+            toggleSingleCheck(false)
             toggleCheck(true)
         } catch (e) {
             if (axios.isCancel(e)) {
@@ -157,11 +141,11 @@ function SearchContextProvider({children}) {
         toggleLoading(false);
     }
 
-    //  ----------------- FILTER HANDLING----------------------- //
+    //  ----------------- HANDLING FAVORITES----------------------- //
     // haalt de favorieten uit de localStorage en zet ze in een namen array
     async function handleFavorites(storedFavo) {
-        console.log("handleFavorites")
         const favorites = storedFavo.split(",");
+        setFavorites(favorites)
         favorites.map((favorite)=>{
             handleFavoritesInfo(favorite)
         })
@@ -174,7 +158,6 @@ function SearchContextProvider({children}) {
         try {
             const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${favorite}`)
             favoritesArray.push(res.data.drinks[0])
-            // toggleSingleCheck(true)
         } catch (e) {
             if (axios.isCancel(e)) {
                 console.log('The axios request was cancelled')
@@ -183,24 +166,30 @@ function SearchContextProvider({children}) {
                 toggleError(true)
             }
         }
-        // toggleIsFavo(true)
         toggleLoading(false);
     }
     // zet favorieten in een array en in localStorage
     function favoCheck(cocktailobject, id) {
-        // favorites.length === 0 ? toggleIsFavo(true) : toggleIsFavo(false)
         favorites.includes(id) ? favorites.splice(favorites.indexOf(id), 1,) : favorites.push(id)
-        // favoritesArray.includes(cocktailobject) ? favoritesArray.splice(favoritesArray.indexOf(cocktailobject), 1,) : favoritesArray.push(cocktailobject)
+        favoritesArray.includes(cocktailobject) ? favoritesArray.splice(favoritesArray.indexOf(cocktailobject), 1,) : favoritesArray.push(cocktailobject)
         localStorage.setItem('favo', favorites);
     }
-    // haalt de favorieten uit de localStorage
-    // function removeFavo() {
-    //     localStorage.removeItem('favo');
-    // }
 
     // controleerd de viewport breedte voor responsive weergave
     function viewPort() {
         return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+
+    function handleError() {
+        toggleError(false)
+    }
+
+    function handleCheck() {
+        toggleCheck(false)
+    }
+
+    function handleSingleCheck() {
+        toggleSingleCheck(true)
     }
 
     const data = {
@@ -232,12 +221,8 @@ function SearchContextProvider({children}) {
         setSingleView: setSingleView,
         favoritesArray: favoritesArray,
         setFavoritesArray: setFavoritesArray,
-        // favoName,
-        // setFavoName,
         favorites: favorites,
         setFavorites: setFavorites,
-        // isFavo,
-        // toggleIsFavo,
 
         error: error,
         setError: toggleError,
@@ -266,7 +251,6 @@ function SearchContextProvider({children}) {
         viewPort: viewPort,
         handleFavorites: handleFavorites,
         favoCheck: favoCheck,
-        // removeFavo: removeFavo,
     }
 
     return (

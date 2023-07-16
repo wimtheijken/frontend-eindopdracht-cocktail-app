@@ -79,28 +79,13 @@
             'opsz' 48
 }
 
-/*Kleine computerschermen: vanaf 992px;*/
-/*Standaard computerschermen: vanaf 1200px;*/
-/*Grote computerschermen: vanaf 1600px;*/
-@media screen and (min-width: 993px) and (max-width: 1150px) {
-
-}
-
 /*Tablets: vanaf 768px;*/
 @media screen and (min-width: 769px) and (max-width: 992px) {
     .singleview-image-container {
-        /*position: relative;*/
-        /*width: 300px;*/
-        /*height: 300px;*/
-        /*margin: 30px;*/
-        /*border-radius: 10px;*/
-        /*box-shadow: inset 2px 2px 20px 10px rgba(0, 0, 0, 0.5);*/
     }
 
     .singleview-description {
         width: 300px;
-        /*height: 1000px;*/
-        /*margin: 30px;*/
     }
 }
 

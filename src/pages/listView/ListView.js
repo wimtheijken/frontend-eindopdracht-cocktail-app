@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import ListItem from "../../components/listItem/ListItem";
@@ -6,16 +6,12 @@ import './ListView.css';
 
 function ListView(props) {
 
-    const { searchResult, search, searchCheck, filterCheck, filterResult, handleCheck,handleSingleCheck, filterTitle, objectType } = useContext(SearchContext)
+    const { searchResult, search, searchCheck, filterCheck, filterResult, handleCheck,handleSingleCheck, objectType, error, loading } = useContext(SearchContext)
 
-    handleCheck()
-    handleSingleCheck()
-
-    console.log("searchResult")
-    console.log(searchResult)
-    console.log("filterResult")
-    console.log(filterResult)
-
+    useEffect(()=>{
+        handleCheck()
+        handleSingleCheck()
+    },[])
 
     return (
         <div className="listview-container">
@@ -45,6 +41,8 @@ function ListView(props) {
                     }) }
                 </div>
             </div>
+            {loading && <p>Loading...</p>}
+            {error && <p>Oops... Er is iets mis gegaan.</p>}
         </div>
     );
 }

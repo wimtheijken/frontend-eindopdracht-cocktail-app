@@ -10,7 +10,7 @@ import ListView from "./pages/listView/ListView";
 import Filter from "./pages/filter/Filter";
 import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
-import Menu from "./pages/menu/Menu";
+import Profiel from "./pages/profiel/Profiel";
 import Favorites from "./pages/favorites/Favorites";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import './App.css';
@@ -44,7 +44,7 @@ function App() {
                         pathA="/"
                         pathB="/search"
                         pathC="/favorites"
-                        pathD="/menu"
+                        pathD="/profiel"
                     />
                     :
                     <NavBar
@@ -56,7 +56,7 @@ function App() {
                         pathA="/"
                         pathB="/search"
                         pathC="/favorites"
-                        pathD="/menu"
+                        pathD="/profiel"
                     />
                 :
             viewport < 567 ?
@@ -90,7 +90,7 @@ function App() {
                     <Route element={<PrivateRoute isAuth={isAuth}/>}>
                         <Route path="/search" element={<Search/>}/>
                         <Route path="/favorites/" element={<Favorites/>}/>
-                        <Route path="/menu" element={<Menu/>}/>
+                        <Route path="/profiel" element={<Profiel/>}/>
                         <Route path="/filter/:filter" element={<Filter/>}/>
                         <Route path="/listview" element={<ListView/>}/>
                         <Route path="/cocktail/:cocktail" element={<Cocktail/>}/>

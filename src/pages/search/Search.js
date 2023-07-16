@@ -40,7 +40,7 @@ function Search() {
                 </Button>
             </form>
             {loading && <p className="search-error">Loading...</p>}
-            {/*{error && <p className="search-error">Oops... Er is iets mis gegaan. Probeer het opnieuw.</p>}*/}
+            {error && <p className="search-error">Oops... Er is iets mis gegaan. Probeer het opnieuw.</p>}
         </div>
     );
 }

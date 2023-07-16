@@ -16,6 +16,7 @@
     background-color: #1E90FF;
     margin: 20px;
 }
+
 .button-search:active {
     background-color: #d3ce8f;
 }
@@ -39,6 +40,7 @@
     border-radius: 10px;
     margin-block: 20px;
 }
+
 /*Kleine computerschermen: vanaf 992px;*/
 /*Standaard computerschermen: vanaf 1200px;*/
 /*Grote computerschermen: vanaf 1600px;*/

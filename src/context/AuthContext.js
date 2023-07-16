@@ -9,7 +9,7 @@ export const AuthContext = createContext(null)
 
 function AuthContextProvider({children}) {
 
-    const { toggleError, toggleLoading, handleFavorites, setFavoritesArray, setFavorites } = useContext(SearchContext)
+    const { handleFavorites, setFavoritesArray, setFavorites } = useContext(SearchContext)
 
     const navigate = useNavigate();
 
@@ -64,12 +64,10 @@ function AuthContextProvider({children}) {
                 status: "done"
             })
             console.log('De gebruiker is ingelogd!')
-            if (redirect) navigate('/menu');
+            if (redirect) navigate('/profiel');
         } catch (e) {
             console.error(e)
-            toggleError(true)
         }
-        toggleLoading(false)
     }
 
     function logout() {

@@ -12,8 +12,10 @@ function Home(props) {
         randomCocktail()
     }, [])
 
-    handleCheck()
-    handleSingleCheck()
+    useEffect(()=>{
+        handleCheck()
+        handleSingleCheck()
+    },[])
 
     return (
         <div className="home-container">

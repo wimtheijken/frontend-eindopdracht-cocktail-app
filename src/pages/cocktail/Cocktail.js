@@ -5,7 +5,7 @@ import SingleView from "../../components/singleView/SingleView";
 import './Cocktail.css';
 
 function Cocktail(props) {
-    const { searchResult, resultItem, handleCheck, favoritesArray, handleSingleView, filterCheck, check, singleCheck } = useContext(SearchContext)
+    const { searchResult, handleCheck, handleSingleView, check, singleCheck, error, loading } = useContext(SearchContext)
     const {cocktail} = useParams();
 
     useEffect(()=>{
@@ -16,7 +16,6 @@ function Cocktail(props) {
         singleCheck && handleSingleView(cocktail)
     }, [singleCheck])
 
-    console.log(cocktail)
     return (
         <div className="cocktail-container">
             {searchResult && <SingleView
@@ -38,6 +37,11 @@ function Cocktail(props) {
                 strIngredient8={searchResult[0].strIngredient8}
                 strIngredient9={searchResult[0].strIngredient9}
                 strIngredient10={searchResult[0].strIngredient10}
+                strIngredient11={searchResult[0].strIngredient11}
+                strIngredient12={searchResult[0].strIngredient12}
+                strIngredient13={searchResult[0].strIngredient13}
+                strIngredient14={searchResult[0].strIngredient14}
+                strIngredient15={searchResult[0].strIngredient15}
                 strMeasure1={searchResult[0].strMeasure1}
                 strMeasure2={searchResult[0].strMeasure2}
                 strMeasure3={searchResult[0].strMeasure3}
@@ -48,7 +52,14 @@ function Cocktail(props) {
                 strMeasure8={searchResult[0].strMeasure8}
                 strMeasure9={searchResult[0].strMeasure9}
                 strMeasure10={searchResult[0].strMeasure10}
+                strMeasure11={searchResult[0].strMeasure11}
+                strMeasure12={searchResult[0].strMeasure12}
+                strMeasure13={searchResult[0].strMeasure13}
+                strMeasure14={searchResult[0].strMeasure14}
+                strMeasure15={searchResult[0].strMeasure15}
             />}
+            {loading && <p>Loading...</p>}
+            {error && <p>Oops... Er is iets mis gegaan.</p>}
         </div>
     );
 }

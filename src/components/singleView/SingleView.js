@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
-import Button from "../button/Button"; // ik heb de backbutton uitgezet omdat deze niet naar behoren werkt
 import './SingleView.css';
 
 
@@ -22,6 +21,11 @@ function SingleView({
                         strIngredient8,
                         strIngredient9,
                         strIngredient10,
+                        strIngredient11,
+                        strIngredient12,
+                        strIngredient13,
+                        strIngredient14,
+                        strIngredient15,
                         strMeasure1,
                         strMeasure2,
                         strMeasure3,
@@ -31,7 +35,12 @@ function SingleView({
                         strMeasure7,
                         strMeasure8,
                         strMeasure9,
-                        strMeasure10
+                        strMeasure10,
+                        strMeasure11,
+                        strMeasure12,
+                        strMeasure13,
+                        strMeasure14,
+                        strMeasure15
                     }) {
 
     const { favorites, favoCheck } = useContext(SearchContext);
@@ -72,11 +81,15 @@ favorite
                         {strIngredient8 !== null && <p>• {strIngredient8} - {strMeasure8}</p>}
                         {strIngredient9 !== null && <p>• {strIngredient9} - {strMeasure9}</p>}
                         {strIngredient10 !== null && <p>• {strIngredient10} - {strMeasure10}</p>}
+                        {strIngredient11 !== null && <p>• {strIngredient11} - {strMeasure11}</p>}
+                        {strIngredient12 !== null && <p>• {strIngredient12} - {strMeasure12}</p>}
+                        {strIngredient13 !== null && <p>• {strIngredient13} - {strMeasure13}</p>}
+                        {strIngredient14 !== null && <p>• {strIngredient14} - {strMeasure14}</p>}
+                        {strIngredient15 !== null && <p>• {strIngredient15} - {strMeasure15}</p>}
                         <p><i>{glass}</i></p>
                     </div>
                     {description !== null && <h3>Instructions</h3>}
                     <p>{description}</p>
-                    {/*<Button type="button" onClick={() => navigate(-1)} className="singleview-button">&#8592; Terug</Button>*/}
                 </div>
             </div>
         </div>

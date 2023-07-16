@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import ListItem from "../../components/listItem/ListItem";
@@ -6,13 +6,12 @@ import './Favorites.css';
 
 function Favorites(props) {
 
-    const { favoritesArray, handleCheck, handleSingleCheck } = useContext(SearchContext)
+    const { favoritesArray, handleCheck, handleSingleCheck, error, loading } = useContext(SearchContext)
 
-    handleCheck()
-    handleSingleCheck()
-
-    console.log("favoritesArray")
-    console.log(favoritesArray)
+    useEffect(()=>{
+        handleCheck()
+        handleSingleCheck()
+    },[])
 
     return (
         <div className="favorites-container">
@@ -34,6 +33,8 @@ favorite
                     })}
                 </div>
             </div>
+            {loading && <p>Loading...</p>}
+            {error && <p>Oops... Er is iets mis gegaan.</p>}
         </div>
     );
 }

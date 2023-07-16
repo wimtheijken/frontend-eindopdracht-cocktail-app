@@ -15,7 +15,6 @@ form .input-field {
     margin: 20px;
 }
 
-/*media aanpassingen*/
 /*Kleine computerschermen: vanaf 992px;*/
 /*Standaard computerschermen: vanaf 1200px;*/
 /*Grote computerschermen: vanaf 1600px;*/
@@ -32,7 +31,6 @@ form .input-field {
         width: 440px;
     }
 }
-
 
 /*Telefoons in landscape: van 576px tot 768px;*/
 @media screen and (min-width: 577px) and (max-width: 768px) {
