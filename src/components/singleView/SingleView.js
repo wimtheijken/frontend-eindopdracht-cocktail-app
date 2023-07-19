@@ -1,7 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {useNavigate} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import './SingleView.css';
+import Button from "../button/Button";
 
 
 function SingleView({
@@ -90,6 +91,7 @@ favorite
                     </div>
                     {description !== null && <h3>Instructions</h3>}
                     <p>{description}</p>
+                    <Button className="button-reset" onClick={() => navigate(-1)}>&larr; Terug</Button>
                 </div>
             </div>
         </div>

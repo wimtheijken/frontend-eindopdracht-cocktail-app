@@ -1,4 +1,4 @@
-export function getObjectKey(filter) {
+export function getFilterType(filter) {
 
     switch (filter) {
         case 'categorie':

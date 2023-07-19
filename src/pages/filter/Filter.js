@@ -1,28 +1,25 @@
 import React, {useContext, useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
-import {getObjectKey} from "../../helper/getObjectKey";
+import {getFilterType} from "../../helper/getFilterType";
 import './Filter.css';
 
 function Filter(props) {
 
-    const { handleFilterChoice, check, filterResult, loading, error, handleFilterList, setFilterType, filterItems, objectKey, setObjectKey, objectType, setObjectType } = useContext(SearchContext)
+    const { handleFilterChoice, check, filterResult, loading, error, handleFilterList, setFilterType, filterItems, setObjectType, filterType } = useContext(SearchContext)
     const { filter } = useParams();
     const navigate = useNavigate();
     console.log(filter)
 
     useEffect(()=>{
-        setFilterType(filter)
-        setObjectKey(getObjectKey(filter))
+        setFilterType(getFilterType(filter)) // titel: categorie, glas, ingredieneten  of alcohol
         handleFilterList(filter)
     }, [filter])
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-        handleFilterChoice(objectKey, e.target.value)
-        setObjectType(e.target.value)
-        console.log(e.target.value)
-        console.log(objectType)
+        setObjectType(e.target.value) // titel voor de lijstweergave
+        handleFilterChoice(filterType, e.target.value)
     }
 
     useEffect(()=>{
@@ -33,19 +30,19 @@ function Filter(props) {
 
     return (
         <div className="filter-container">
-            {filter && <h1>{objectKey}</h1>}
+            {filter && <h1>{filterType}</h1>}
             <form className="filter-inner-container" onChange={handleFormSubmit}>
                 <select className="filter-select" multiple size="7">
-                    { filterItems && objectKey === 'Categorie' && filterItems.map((filterItem) => {
-                        return <option className="scroll-page" id={filterItem.strCategory} key={filterItem.strCategory} value={filterItem.strCategory} /*onChange={()=>{handleChange(e)}}*/>{filterItem.strCategory}</option>
+                    { filterItems && filterType === 'Categorie' && filterItems.map((filterItem) => {
+                        return <option className="scroll-page" id={filterItem.strCategory} key={filterItem.strCategory} value={filterItem.strCategory} >{filterItem.strCategory}</option>
                     }) }
-                    { filterItems && objectKey === 'Type glas' && filterItems.map((filterItem) => {
+                    { filterItems && filterType === 'Type glas' && filterItems.map((filterItem) => {
                         return <option className="scroll-page" id={filterItem.strGlass} key={filterItem.strGlass} value={filterItem.strGlass}>{filterItem.strGlass}</option>
                     }) }
-                    { filterItems && objectKey === 'Ingrediënt' && filterItems.map((filterItem) => {
+                    { filterItems && filterType === 'Ingrediënt' && filterItems.map((filterItem) => {
                         return <option className="scroll-page" id={filterItem.strIngredient1} key={filterItem.strIngredient1} value={filterItem.strIngredient1}>{filterItem.strIngredient1}</option>
                     }) }
-                    { filterItems && objectKey === 'Alcohol' && filterItems.map((filterItem) => {
+                    { filterItems && filterType === 'Alcohol' && filterItems.map((filterItem) => {
                         return <option className="scroll-page" id={filterItem.strAlcoholic} key={filterItem.strAlcoholic} value={filterItem.strAlcoholic}>{filterItem.strAlcoholic}</option>
                     }) }
                 </select>

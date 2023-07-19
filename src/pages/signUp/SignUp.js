@@ -4,13 +4,12 @@ import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
 
 function SignUp(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
-    const [role, setRole] = useState(['user']);
+    const [role, setRole] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
 
     const [loading, toggleLoading] = useState(false);
@@ -20,6 +19,7 @@ function SignUp(props) {
     async function handleTest() {
         toggleLoading(true)
         toggleError(false)
+        setRole(['user'])
         try {
             const res = await axios.get('https://frontend-educational-backend.herokuapp.com/api/test/all')
             console.log(res.data)
@@ -47,7 +47,6 @@ function SignUp(props) {
             });
             console.log(res)
             navigate('/signin')
-            // Stap 4: Geef de JWT mee aan de login functie
         } catch (e) {
             toggleError(true)
             setErrorMessage(e.response.data.message)

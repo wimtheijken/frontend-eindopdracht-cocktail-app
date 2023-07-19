@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {SearchContext} from "../../context/SearchContext";
 import {AuthContext} from "../../context/AuthContext";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './Profiel.css';
 
 function Profiel(props) {

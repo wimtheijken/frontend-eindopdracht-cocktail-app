@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import {AuthContext} from "../../context/AuthContext";
 import './Home.css';
 
 function Home(props) {
-    const { randomCocktail, cocktailName, cocktailImage, loading, error, handleCheck, handleSingleCheck, singleView } = useContext(SearchContext)
+    const { randomCocktail, cocktailName, cocktailImage, loading, error, handleCheck, handleSingleCheck, cocktailId } = useContext(SearchContext)
     const { isAuth } = useContext(AuthContext);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ function Home(props) {
             {isAuth
                 ?
                 <div className="home-inner-container">
-                    <Link to={"../cocktail/" + singleView} key={singleView}>
+                    <Link to={"../cocktail/" + cocktailId} key={cocktailId}>
                         <div className="home-image-container">
                             {cocktailName && <div className="home-shadow">
                                 <img className="home-image"

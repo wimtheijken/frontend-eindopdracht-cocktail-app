@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
-import './SignIn.css';
+import {Link} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
+import axios from "axios";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
-import axios from "axios";
-import {AuthContext} from "../../context/AuthContext";
-import {Link} from "react-router-dom";
+import './SignIn.css';
 
 function SignIn(props) {
     const {login} = useContext(AuthContext);

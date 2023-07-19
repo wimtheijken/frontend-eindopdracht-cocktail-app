@@ -7,8 +7,9 @@ import {checkSearchResult} from "../../helper/checkSearchResult";
 import './Search.css';
 
 function Search() {
-    const { handleSearch, search, setSearch, handleError, endpoint, setEndpoint, searchResult, check, toggleCheck, toggleFilterCheck, loading, error } = useContext(SearchContext)
+    const { handleSearch, search, setSearch, searchResult, check, loading, error } = useContext(SearchContext)
     const navigate = useNavigate();
+
     async function handleFormSubmit(e) {
         e.preventDefault()
         handleSearch(search)
@@ -16,7 +17,7 @@ function Search() {
 
     useEffect(()=>{
         if (check) {
-            checkSearchResult(searchResult) ? navigate(`/cocktail/${searchResult}`) : navigate('/listview')
+            checkSearchResult(searchResult) ? navigate("/cocktail/"+searchResult[0].idDrink ) : navigate('/listview')
         }
     },[searchResult])
 

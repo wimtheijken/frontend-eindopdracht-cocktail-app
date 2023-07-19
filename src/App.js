@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {AuthContext} from "./context/AuthContext";
 import {SearchContext} from "./context/SearchContext";
@@ -28,7 +28,6 @@ function App() {
         handleResize()
     }, [])
 
-    // console.log(viewport)
     window.addEventListener('resize', handleResize)
 
     return (

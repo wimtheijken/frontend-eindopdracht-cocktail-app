@@ -18,7 +18,7 @@
 }
 
 .button-search:active {
-    background-color: #d3ce8f;
+    background-color: #91caff;
 }
 
 .button-reset {
@@ -28,7 +28,7 @@
     width: 80px;
 }
 
-.button-reset:a {
+.button-reset:active {
     background-color: #d3ce8f;
 }
 
