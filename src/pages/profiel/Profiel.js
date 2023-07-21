@@ -11,7 +11,7 @@ function Profiel(props) {
     useEffect(()=>{
         handleCheck()
         handleSingleCheck()
-    },[])
+    })
 
     return (
         <div className="menu-container">

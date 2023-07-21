@@ -30,7 +30,7 @@ function AuthContextProvider({children}) {
         } else {
             void logout()
         }
-    }, [])
+    },[])
 
     async function login(jwt_token, redirect) {
         const decodedToken = jwt_decode(jwt_token);

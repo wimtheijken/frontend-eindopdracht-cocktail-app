@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router} from 'react-router-dom';
-import AuthContextProvider, {AuthContext} from "./context/AuthContext";
-import SearchContextProvider, {SearchContext} from "./context/SearchContext";
+import AuthContextProvider from "./context/AuthContext";
+import SearchContextProvider from "./context/SearchContext";
 import App from './App';
 import './index.css';
 

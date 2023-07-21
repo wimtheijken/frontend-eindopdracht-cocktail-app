@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './SignUp.css';
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";

@@ -15,7 +15,7 @@ function NavBar({className, labelA, labelB, labelC, labelD, pathA, pathB, pathC,
 
     useEffect(() => {
         handleResize()
-    }, [])
+    },[])
 
     window.addEventListener('resize', handleResize)
 

@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import {SearchContext} from "../../context/SearchContext";
 import ListItem from "../../components/listItem/ListItem";
 import './ListView.css';
-import favorites from "../favorites/Favorites";
 
 function ListView(props) {
 
@@ -23,7 +22,7 @@ function ListView(props) {
     useEffect(() => {
         handleCheck()
         handleSingleCheck()
-    }, [])
+    },[])
 
     return (
         <div className="listview-container">

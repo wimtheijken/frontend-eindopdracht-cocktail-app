@@ -14,7 +14,7 @@ function Cocktail(props) {
 
     useEffect(() => {
         handleSingleView(cocktail)
-    }, [])
+    },[])
 
     return (
         <div className="cocktail-container">
