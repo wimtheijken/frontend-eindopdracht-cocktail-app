@@ -56,10 +56,6 @@
     border-radius: 10px;
 }
 
-i {
-    font-weight: 300;
-}
-
 /*media aanpassingen*/
 .home-text {
     font-size: 1.5em;
@@ -67,20 +63,6 @@ i {
     width: 560px;
     text-align: center;
 }
-
-
-/*Kleine computerschermen: vanaf 992px;*/
-/*Standaard computerschermen: vanaf 1200px;*/
-/*Grote computerschermen: vanaf 1600px;*/
-@media screen and (min-width: 993px) and (max-width: 1150px) {
-
-}
-
-/*Tablets: vanaf 768px;*/
-@media screen and (min-width: 769px) and (max-width: 992px) {
-
-}
-
 
 /*Telefoons in landscape: van 576px tot 768px;*/
 @media screen and (min-width: 577px) and (max-width: 768px) {

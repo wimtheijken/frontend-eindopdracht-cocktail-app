@@ -22,21 +22,12 @@ a {
     text-decoration: none;
 }
 
-/*media aanpassingen*/
-/*Kleine computerschermen: vanaf 992px;*/
-/*Standaard computerschermen: vanaf 1200px;*/
-/*Grote computerschermen: vanaf 1600px;*/
-@media screen and (min-width: 993px) and (max-width: 1150px) {
-
-}
-
 /*Tablets: vanaf 768px;*/
 @media screen and (min-width: 769px) and (max-width: 992px) {
     .listview-wrap-container {
         width: 490px;
     }
 }
-
 
 /*Telefoons in landscape: van 576px tot 768px;*/
 @media screen and (min-width: 577px) and (max-width: 768px) {

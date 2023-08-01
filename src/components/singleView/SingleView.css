@@ -2,7 +2,6 @@
 .cocktail-container {
     display: flex;
     flex-direction: column;
-    /*flex-basis: 100%;*/
     align-items: center;
 }
 
@@ -42,7 +41,6 @@
 /*media aanpassingen*/
 .singleview-description {
     width: 400px;
-    /*height: 400%;*/
     margin: 30px;
 }
 
@@ -81,9 +79,6 @@
 
 /*Tablets: vanaf 768px;*/
 @media screen and (min-width: 769px) and (max-width: 992px) {
-    .singleview-image-container {
-    }
-
     .singleview-description {
         width: 300px;
     }

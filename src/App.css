@@ -7,10 +7,6 @@
     background-image: url("./assets/noise-texture.png");
 }
 
-.outer-container {
-    /*height: calc(100vh - 200px);*/
-}
-
 /*media aanpassingen*/
 h1 {
     font-size: 5em;
@@ -49,37 +45,25 @@ p {
     color: white;
 }
 
-/*Kleine computerschermen: vanaf 992px;*/
-/*Standaard computerschermen: vanaf 1200px;*/
-/*Grote computerschermen: vanaf 1600px;*/
-@media screen and (min-width: 993px) and (max-width: 1150px) {
-
+i {
+    font-weight: 300;
 }
 
-/*Tablets: vanaf 768px;*/
-@media screen and (min-width: 769px) and (max-width: 992px) {
-
+a {
+    text-decoration: none;
+    color: white;
 }
-
 
 /*Telefoons in landscape: van 576px tot 768px;*/
 @media screen and (min-width: 577px) and (max-width: 768px) {
-    /*media aanpassingen*/
     h1 {
         font-size: 4em;
-        /*font-weight: lighter;*/
-        /*color: white;*/
-        /*text-align: center;*/
     }
 }
 
 /*Telefoons in portrait: tot 576px;*/
 @media screen and (max-width: 576px) {
-    /*media aanpassingen*/
     h1 {
         font-size: 3em;
-        /*font-weight: lighter;*/
-        /*color: white;*/
-        /*text-align: center;*/
     }
 }
